@@ -1,0 +1,48 @@
+// Sally Glider
+{
+  "actor": {
+    "name": "Sally Glider",
+    "mbox": "sally@example.com"
+  },
+  "verb": {
+    "display": "Logged in"
+  },
+  "object": {
+    "display": "website"
+
+  },
+  "context": {
+    "instructor": {
+      "name": "Irene Instructor",
+      "mbox": "irene@example.com"
+    },
+  },
+  "timestamp": {
+    "datetime": "2015-01-01T10:20:30+01:00"
+  }
+}
+
+
+// Sally Glider
+{
+  "actor": {
+    "name": "Sally Glider",
+    "mbox": "sally@example.com"
+  },
+  "verb": {
+    "display": "Logged in"
+  },
+  "object": {
+    "display": "website"
+
+  },
+  "context": {
+    "instructor": {
+      "name": "Irene Instructor",
+      "mbox": "irene@example.com"
+    },
+  },
+  "timestamp": {
+    "datetime": "2015-01-01T10:20:30+01:00"
+  }
+}
