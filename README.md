@@ -8,12 +8,6 @@ Tools to install:
 - java 1.8 for elasticsearch
 - Python3 to generate fixtures
 
-## Only for dev (It's not free)
-
-- marvel
-
-Follow the instruction : https://www.elastic.co/downloads/marvel
-
 
 ## How to start?
 
@@ -27,8 +21,9 @@ Follow the instruction : https://www.elastic.co/downloads/marvel
 
 
 ```
-python3 start.py
+python3 start.py cf
 ```
+
 
 We use the Tin Can API format.
 
@@ -36,10 +31,6 @@ We use the Tin Can API format.
 ### 3. Visualize data
 
 Kibana: http://localhost:5601/
-
-### 4. Query the data
-
-Marvel: http://localhost:5601
 
 
 #### Configure Kibana (only the first time)
@@ -51,3 +42,23 @@ Add index name *placis*
 ## Fixtures
 
 Verbs come from : https://registry.tincanapi.com
+
+
+## Advanced
+
+```
+python start.py [arguments]
+```
+
+*arguments* :
+
+- g : get indexes from ES
+- d : delete indexes on ES
+- c : create indexes on ES
+- f : creates fixtures on ES
+
+```
+Example :
+python start.py dcf
+```
+
