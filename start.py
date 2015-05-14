@@ -2,11 +2,14 @@ import jsonpickle
 import requests
 import sys
 from datetime import *
+import random
 
-from random import *
+from utils import *
 
 jsonpickle.set_encoder_options('simplejson', sort_keys=True, indent=4)
 
+historic = []
+lessons_name = ['Maths', 'English', 'Computer Science']
 
 class Activity:
     def __init__(self, actor, verb, object, date):
@@ -14,6 +17,8 @@ class Activity:
         self.timestamp = date
         self.verb = verb
         self.object = object
+        historic.append(self)
+
 
     def __str__(self):
         return "Activity: " + str(self.actor)+" " + str(self.verb)+ " " + str(self.object)
@@ -25,6 +30,7 @@ class Student:
         self.email = str(id) + "@gmail.com"
         self.name = str(id)
         self.logged_in = False
+        self.lessons = []
 
 
     def __str__(self):
@@ -34,13 +40,41 @@ class Student:
     def start_day(self, date):
         if not self.logged_in:
             self.logged_in = True
-            return Activity(self, "Logged in", "website", date)
+            Activity(self, "Logged in", "website", date)
+
+    def stop_day(self, date):
+        if self.logged_in:
+            self.logged_in = False
+            Activity(self, "Logged out", "website", date)
+
+    def register_lesson(self, date):
+        l = random.choice(lessons_name)
+
+        if l not in self.lessons:
+            self.lessons.append(l)
+            Activity(self, "Registered in", l , date)
+
+    def go_lesson(self, date):
+        if not self.lessons or random.random() < 0.05:
+            self.register_lesson(date)
+
+        if random.random() < 0.8:
+            l = random.choice(self.lessons)
+            date = random_time(date, 0, 3)
+            Activity(self, "started", l , date)
+
+            date = random_time(date, 0, 30)
+            Activity(self, "stopped", l , date)
+
+        return date
+
 
 
     # overide Serializer of json pickle
     def __getstate__(self):
         state = self.__dict__.copy()
         del state['logged_in']
+        del state['lessons']
         return state
 
 
@@ -52,23 +86,38 @@ class Student:
 def create_fixtures():
     '''
     Create fixtures into Json
+    This is the scenario
     '''
 
-    historic = []
+    today_start = datetime(2015, 1, 1)
 
-    today = datetime(2015, 1, 1)
+    # represent number of students
+    for i in range (10):
+        student = Student(i)
 
-    # represent days
-    for i in range (20):
-        today = today + timedelta(days=1)
-        # represent number of students
-        for x in range(1000):
-            student = Student(x)
+        # represent number of days
+        for x in range(28):
+            today = random_time(today_start + timedelta(days=x))
+            today = random_time(today)
 
-            # chances to be connected on the day
-            if random() < 0.6:
-                activity = student.start_day(today)
-                historic.append(activity)
+            # One day
+            s=0
+            while (s < 0.1):
+                s = random.random()
+                if random.random() < 0.6:
+                    today = random_time(today, 3, 0)
+                    student.start_day(today)
+
+                    r=0
+                    while (r < 0.3):
+                        r = random.random()
+                        if random.random() < 0.9:
+                            today = random_time(today, 0, 20)
+                            today = student.go_lesson(today)
+
+                    today = random_time(today, 0, 5)
+                    student.stop_day(today)
+
 
     print(jsonpickle.encode(historic, unpicklable=False))
 
