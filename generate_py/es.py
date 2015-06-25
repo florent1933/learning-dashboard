@@ -18,6 +18,14 @@ def create_es():
                     "verb":{
                         "type": "string",
                         "index": "not_analyzed"
+                    },
+                    "timestamp": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "actor.email": {
+                        "type": "string",
+                        "index": "not_analyzed"
                     }
                 }
             }

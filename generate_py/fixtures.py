@@ -93,8 +93,9 @@ def create_fixtures():
     today_start = datetime(2015, 1, 1)
 
     # represent number of students
-    for i in range (10):
+    for i in range (100):
         student = Student(i)
+        print("Étudiant" + str(i))
 
         # represent number of days
         for x in range(28):
