@@ -28,7 +28,48 @@ python3 start.py cf
 We use the Tin Can API format.
 
 
-### 3. Load dashboard and fixtures
+
+### 3. Visualize data
+
+
+#### Configure Kibana (only the first time)
+
+Deactivate Index contains time-based events
+
+Add index name *placis*
+
+
+#### Watch fixtures
+
+
+Kibana: http://localhost:5601/
+
+## Fixtures
+
+Verbs come from : https://registry.tincanapi.com
+
+
+
+#### Create fixtures
+
+```
+python start.py [arguments]
+```
+
+*arguments* :
+
+- g : get indexes from ES
+- d : delete indexes on ES
+- c : create indexes on ES
+- f : creates fixtures on ES
+
+```
+Example :
+python start.py dcf
+```
+
+
+### 4. Load dashboard
 
 Use of elasticdump
 
@@ -62,44 +103,4 @@ elasticdump \
     --input=kibana-exported.json \
     --output=http://localhost:9200/.kibana \
     --type=data
-```
-
-
-
-
-### 4. Visualize data
-
-Kibana: http://localhost:5601/
-
-
-#### Configure Kibana (only the first time)
-
-Deactivate Index contains time-based events
-
-Add index name *placis*
-
-## Fixtures
-
-Verbs come from : https://registry.tincanapi.com
-
-
-## Advanced
-
-
-### Create fixtures
-
-```
-python start.py [arguments]
-```
-
-*arguments* :
-
-- g : get indexes from ES
-- d : delete indexes on ES
-- c : create indexes on ES
-- f : creates fixtures on ES
-
-```
-Example :
-python start.py dcf
 ```
