@@ -49,26 +49,6 @@ Kibana: http://localhost:5601/
 Verbs come from : https://registry.tincanapi.com
 
 
-
-#### Create fixtures
-
-```
-python start.py [arguments]
-```
-
-*arguments* :
-
-- g : get indexes from ES
-- d : delete indexes on ES
-- c : create indexes on ES
-- f : creates fixtures on ES
-
-```
-Example :
-python start.py dcf
-```
-
-
 ### 4. Load dashboard
 
 Use of elasticdump
@@ -103,4 +83,27 @@ elasticdump \
     --input=kibana-exported.json \
     --output=http://localhost:9200/.kibana \
     --type=data
+```
+
+
+
+
+## Advanced
+
+### Create fixtures
+
+```
+python start.py [arguments]
+```
+
+*arguments* :
+
+- g : get indexes from ES
+- d : delete indexes on ES
+- c : create indexes on ES
+- f : creates fixtures on ES
+
+```
+Example :
+python start.py dcf
 ```
