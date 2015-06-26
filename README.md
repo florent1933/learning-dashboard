@@ -86,6 +86,32 @@ elasticdump \
 ```
 
 
+### 5. Integrate Dashboard on PLACIS
+
+Use of AngularJS
+
+
+Load module **LearningAnaliticsControllers**
+
+
+1. Add to HTML **ng-controller="Dashboard"**
+
+2. Use of directive to load dashboard
+
+```
+<iframe refreshable="tab.refresh" src="{{trustAsResourceUrl(iframeUrl)}}" height="600px" width="100%"></iframe>
+```
+
+3. First data is load from controller
+
+
+4. Change dashboard with ng-model
+
+Thanks to double way data-binding, it's possible to access to $scope
+
+
+
+
 
 
 ## Advanced
