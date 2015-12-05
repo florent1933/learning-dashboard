@@ -1,4 +1,4 @@
-# learning-dashboard for Placis
+# learning-dashboard
 
 ## Requirements
 
